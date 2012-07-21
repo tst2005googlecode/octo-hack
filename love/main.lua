@@ -141,6 +141,67 @@ function Enemy:ai()
 	until self:move(dx,dy) or c>8
 end
 
+function Bresenham(x0, x1, y0, y1)
+	if (abs(y1 - y0) > abs(x1 - x0)) then
+		local steep§ = true
+	end
+	if(steep)
+		--swap(x0, y0);
+		--swap(x1, y1);
+		x0, y0 = y0, x0
+		x1, y1 = y1, x1
+	end
+	if (x0 > x1)
+		--swap(x0, x1);
+		--swap(y0, y1);
+		x0, X1 = x1, x0
+		y0, y1 = y1, y0
+	end
+	local deltax = x1 - x0
+	local deltay = math.abs(y1 - y0)
+	local error = 0
+	local deltaerr = deltay / deltax
+	local ystep;
+	local y = y0
+	if (y0 < y1) then
+		ystep = 1
+	else
+		ystep = -1
+	end
+
+	for (x=x0,x1-1) do
+		if(steep) then
+			if (hasTile(y,x))
+				--Do stuff
+			end
+
+		else
+			if (hasTile(x,y))
+				--Do stuff
+			end
+		end
+		error = error + deltaerr
+		if (error >= 0.5) then
+			y = y + ystep
+			if( special )
+				if(steep)
+					m.push_back(Pos(y,x));
+					if (hasTile(y,x))
+						--Do stuff
+					end
+				else
+					m.push_back(Pos(x,y));
+					if (hasTile(x,y))
+						--Do stuff
+					end
+				end
+			end
+			error = error - 1.0f;
+		end
+	end
+	return m;
+end
+
 function smenu:init()
 	self.bg = love.graphics.newImage('media/main.png')
 end
