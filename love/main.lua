@@ -1,4 +1,4 @@
-Sounds = false
+Sounds = true
 
 function playSound(s)
 	love.audio.stop(s)
@@ -29,6 +29,7 @@ ATL_Loader.path = "media/"
 sgame = Gamestate.new()
 smenu = Gamestate.new()
 sdone = Gamestate.new()
+sfail = Gamestate.new()
 
 Coin = Class{function(self, x, y)
 	self.x = x
@@ -141,7 +142,7 @@ function Enemy:ai()
 end
 
 function smenu:init()
-	self.bg = love.graphics.newImage('media/start.png')
+	self.bg = love.graphics.newImage('media/main.png')
 end
 function smenu:draw()
 	love.graphics.setColor(255,255,255,255)
@@ -160,7 +161,7 @@ function smenu:keypressed(key)
 end
 
 function sdone:init()
-	self.bg = love.graphics.newImage('media/done.png')
+	self.bg = love.graphics.newImage('media/win.png')
 end
 function sdone:enter()
 	print("entered done")
@@ -177,10 +178,28 @@ function sdone:keypressed(key)
 	end
 end
 
+function sfail:init()
+	self.bg = love.graphics.newImage('media/fail.png')
+end
+function sfail:enter()
+	print("entered fail")
+end
+function sfail:draw()
+	love.graphics.setColor(255,255,255,255)
+    love.graphics.draw(self.bg, 0, 0)
+end
+function sfail:keypressed(key)
+	if key == "escape" then
+		love.event.quit()
+    else
+		Gamestate.switch(smenu)
+	end
+end
+
 function love.load()
 	love.graphics.setBackgroundColor( 100, 149, 237 )
 	canplay = 1
-	loadWorld()
+	--loadWorld()
 	if Sounds then
 		playMusic("sfx/bu-a-banana-and-simplices.it")
 	end
@@ -200,7 +219,7 @@ function love.load()
 	sfxKill = sfx("sfx/kill.wav")
 	
 	Gamestate.registerEvents()
-    Gamestate.switch(sgame)
+    Gamestate.switch(smenu)
 end
 
 function hasTile(x,y)
@@ -287,6 +306,14 @@ function handleTick()
 	end
 	
 	remove_if(coins, isKillmeSet)
+	
+	if #players == 0 then
+		Gamestate.switch(sfail)
+	end
+	
+	if #coins == 0 then
+		Gamestate.switch(sdone)
+	end
 end
 
 function isKillmeSet(self)
