@@ -67,6 +67,9 @@ function Player:move(x, y)
 	if false == hasTile(self.x+x, self.y+y) then
 		self.x = self.x + x
 		self.y = self.y + y
+		playSound(sfxMove)
+	else
+		playSound(sfxHitWall)
 	end
 end
 
@@ -79,6 +82,7 @@ function Player:spawnSub()
 		local p = addPlayer(self.x, self.y)
 		p.arms = 1
 		self.arms = self.arms - 1
+		playSound(sfxDetach)
 	end
 end
 
@@ -171,6 +175,11 @@ function love.load()
 	for _,i in ipairs({1,2,3,4,6,7,8,9}) do
 		gfxArms[i] = love.graphics.newImage( "media/Tentacles" .. i .. ".png" )
 	end
+	
+	sfxDetach = sfx("sfx/detach.mp3")
+	sfxMove = sfx("sfx/move.mp3")
+	sfxHitWall = sfx("sfx/hitwall.mp3")
+	
 	Gamestate.registerEvents()
     Gamestate.switch(sgame)
 end
