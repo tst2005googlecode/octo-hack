@@ -45,11 +45,11 @@
                         <x>-88</x>
                         <y>44</y>
                         <z>0</z>
-                        <width>44</width>
-                        <height>44</height>
+                        <width>68</width>
+                        <height>68</height>
                         <depth>0</depth>
-                        <hotspotX>0.477272719</hotspotX>
-                        <hotspotY>0.522727251</hotspotY>
+                        <hotspotX>0.470588237</hotspotX>
+			<hotspotY>0.522727251</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
