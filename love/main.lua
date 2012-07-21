@@ -196,6 +196,8 @@ function love.load()
 	sfxMove = sfx("sfx/move.mp3")
 	sfxHitWall = sfx("sfx/hitwall.mp3")
 	sfxCoin = sfx("sfx/coin.wav")
+	sfxDmg = sfx("sfx/dmg.wav")
+	sfxKill = sfx("sfx/kill.wav")
 	
 	Gamestate.registerEvents()
     Gamestate.switch(sgame)
@@ -229,6 +231,7 @@ function sgame:draw()
 	camera:detach()
 	love.graphics.setColor(0,0,0, 255)
 	--love.graphics.print(string.format("%d", fps), 100, 10)
+	love.graphics.print(string.format("Players: " .. #players .. " | Coins: " .. #coins .. " | Enemies: " .. #enemies, fps), 100, 10)
 end
 
 function remove_if(list, func)
@@ -251,6 +254,27 @@ function handleTick()
 	end
 	
 	-- check for enemy-player collisions
+	for i,player in ipairs(players) do
+		for j,enemy in ipairs(enemies) do
+			if player.x == enemy.x and player.y == enemy.y then
+				if player.arms == 1 then
+					playSound(sfxDmg)
+					player.killme = true
+				else
+					playSound(sfxKill)
+					player.arms = player.arms - 1
+					enemy.killme = true
+				end
+			end
+		end
+	end
+	
+	remove_if(players, isKillmeSet)
+	remove_if(enemies, isKillmeSet)
+	
+	if selected > #players then
+		selected = 1
+	end
 	
 	-- check for player-coin collisions
 	for i,player in ipairs(players) do
