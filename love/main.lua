@@ -29,6 +29,7 @@ sdone = Gamestate.new()
 Player = Class{function(self, x, y)
 	self.x = x
 	self.y = y
+	self.arms = 8
 end}
 
 function smartDrawTile(self, Img)
@@ -39,7 +40,7 @@ end
 function Player:draw()
 	smartDrawTile(self, Head)
 	love.graphics.setColor(0,0,0,255)
-	--love.graphics.circle("fill", self.x*44, self.y*44, 50)
+	love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
 end
 
 function Player:move(x, y)
@@ -51,6 +52,14 @@ end
 
 function Player:getRenderPos()
 	return Vector(self.x*44+22, self.y*44+22)
+end
+
+function Player:spawnSub()
+	if self.arms > 2 then
+		local p = addPlayer(self.x, self.y)
+		p.arms = 1
+		self.arms = self.arms - 1
+	end
 end
 
 Enemy = Class{ function(self, x,y)
@@ -211,7 +220,7 @@ function sgame:keyreleased(key)
 			handleTick()
 		end
 		if key==" " then
-			addPlayer(player.x, player.y)
+			player:spawnSub()
 			handleTick()
 		end
 		if key=="tab" then
@@ -231,7 +240,9 @@ function sgame:mousereleased(x, y, button)
 end
 
 function addPlayer(x,y)
-	players[#players + 1] = Player(x,y)
+	local p = Player(x,y)
+	players[#players + 1] = p
+	return p
 end
 
 function addEnemy(x,y)
@@ -249,8 +260,6 @@ function loadWorld()
 	camera = Camera(Vector(1,1))
 	players =  {}
 	enemies = {}
-	--addPlayer(2,2)
-	--addEnemy(5,2)
 	selected = 1
 	col = {}
 	for tilename, tilelayer in pairs(map.tileLayers) do
