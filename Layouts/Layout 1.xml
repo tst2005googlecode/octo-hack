@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2layout>
+    <name>Layout 1</name>
+    <event-sheet>Event sheet 1</event-sheet>
+    <size>
+        <width>748</width>
+        <height>748</height>
+    </size>
+    <margins>
+        <horizontal>500</horizontal>
+        <vertical>500</vertical>
+    </margins>
+    <unbounded-scrolling>0</unbounded-scrolling>
+    <layers>
+        <layer name="Layer 0">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>0</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <instances>
+                <instance type="Octopus">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <selected>false</selected>
+                        <arms>1</arms>
+                        <mother>false</mother>
+                        <px>0</px>
+                        <py>0</py>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="GridMove">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>400</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="ScrollTo" />
+                    </behavior-instances>
+                    <world>
+                        <x>88</x>
+                        <y>88</y>
+                        <z>0</z>
+                        <width>68</width>
+                        <height>68</height>
+                        <depth>0</depth>
+                        <hotspotX>0.470588237</hotspotX>
+                        <hotspotY>0.529411793</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Tile">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Solid" />
+                    </behavior-instances>
+                    <world>
+                        <x>-88</x>
+                        <y>220</y>
+                        <z>0</z>
+                        <width>44</width>
+                        <height>44</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Tiles">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Solid" />
+                    </behavior-instances>
+                    <world>
+                        <x>-132</x>
+                        <y>88</y>
+                        <z>0</z>
+                        <width>44</width>
+                        <height>44</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Octopus">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <selected>false</selected>
+                        <arms>1</arms>
+                        <mother>false</mother>
+                        <px>0</px>
+                        <py>0</py>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="GridMove">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>400</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="ScrollTo" />
+                    </behavior-instances>
+                    <world>
+                        <x>176</x>
+                        <y>88</y>
+                        <z>0</z>
+                        <width>44</width>
+                        <height>44</height>
+                        <depth>0</depth>
+                        <hotspotX>0.470588237</hotspotX>
+                        <hotspotY>0.529411793</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+        </layer>
+    </layers>
+    <nonworld-instances>
+        <instance type="Board">
+            <properties>
+                <width>17</width>
+                <height>17</height>
+            </properties>
+        </instance>
+        <instance type="SquareTx">
+            <properties>
+                <orientation>Orthogonal</orientation>
+                <x-at-00>20</x-at-00>
+                <y-at-00>20</y-at-00>
+                <width>44</width>
+                <height>44</height>
+            </properties>
+        </instance>
+        <instance type="TMXImporter">
+            <properties>
+                <x-at-00>0</x-at-00>
+                <y-at-00>0</y-at-00>
+            </properties>
+        </instance>
+    </nonworld-instances>
+</c2layout>
