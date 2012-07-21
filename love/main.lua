@@ -168,7 +168,7 @@ function love.load()
 	love.graphics.setBackgroundColor( 100, 149, 237 )
 	canplay = 1
 	loadWorld()
-	--playMusic("bu-a-banana-and-simplices.it")
+	playMusic("sfx/bu-a-banana-and-simplices.it")
 	Head = love.graphics.newImage( "media/Head.png" )
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
 	gfxArms = {}
