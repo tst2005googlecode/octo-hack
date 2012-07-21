@@ -41,6 +41,11 @@
     <object-folder expanded="1">
         <object-type name="Octopus">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="picked" type="boolean" />
+                <instance-variable name="arms" type="number" />
+                <instance-variable name="mother" type="boolean" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="GridMove">
                     <behavior id="Rex_GridMove" />
@@ -121,7 +126,13 @@
             </animation-folder>
         </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="Octopie" plugin-id="Sprite">
+            <members>
+                <member>Octopus</member>
+            </members>
+        </family>
+    </families>
     <layout-folder expanded="1">
         <layout>Layout 1.xml</layout>
     </layout-folder>
