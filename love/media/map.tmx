@@ -116,7 +116,7 @@
    <tile gid="5"/>
    <tile gid="5"/>
    <tile gid="5"/>
-   <tile gid="5"/>
+   <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="5"/>
    <tile gid="4"/>
@@ -133,8 +133,8 @@
    <tile gid="5"/>
    <tile gid="5"/>
    <tile gid="5"/>
-   <tile gid="5"/>
-   <tile gid="5"/>
+   <tile gid="4"/>
+   <tile gid="4"/>
    <tile gid="4"/>
    <tile gid="5"/>
    <tile gid="5"/>
@@ -311,4 +311,10 @@
    <tile gid="4"/>
   </data>
  </layer>
+ <objectgroup name="fish" width="17" height="17">
+  <object x="283" y="148"/>
+  <object x="283" y="240"/>
+  <object x="200" y="195"/>
+  <object x="377" y="191"/>
+ </objectgroup>
 </map>
