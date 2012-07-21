@@ -3,58 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <event-group description="" disabled="1" title="Movement">
-            <sub-events>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">38 (Up arrow)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
-                            <param id="0" name="Direction">3</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">40 (Down arrow)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
-                            <param id="0" name="Direction">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">37 (Left arrow)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
-                            <param id="0" name="Direction">2</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">39 (Right arrow)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
-                            <param id="0" name="Direction">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
         <event-group description="" title="Initialization">
             <sub-events>
                 <comment>1. load tmx string&#x0D;&#x0A;2. link squareTx to board&#x0D;&#x0A;3. setup squareTx to match tmx&#x0D;&#x0A;4. setup board to match tmx&#x0D;&#x0A;5. retrieve tile arry of tmx&#x0D;&#x0A;6. release tmx object</comment>
@@ -109,6 +57,14 @@
                             <param id="2" name="Logic Y">4</param>
                             <param id="3" name="Logic Z">1</param>
                             <param id="4" name="Layer">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Octopus">
+                            <param id="0" name="Instance variable">selected</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Octopus">
+                            <param id="0" name="Instance variable">mother</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -275,7 +231,7 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-8" name="Is boolean instance variable set" type="Octopus">
-                                            <param id="0" name="Instance variable">picked</param>
+                                            <param id="0" name="Instance variable">selected</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -286,6 +242,14 @@
                                             <param id="0" name="Variable">g_updateLock</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
+                                        <action id="-10" name="Set value" type="Octopus">
+                                            <param id="0" name="Instance variable">px</param>
+                                            <param id="1" name="Value">Octopus.GridMove.DestinationLX</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Octopus">
+                                            <param id="0" name="Instance variable">py</param>
+                                            <param id="1" name="Value">Octopus.GridMove.DestinationLY</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
@@ -294,6 +258,12 @@
                             <conditions>
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">40 (Down arrow)</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                    <param id="0" name="Instance variable">selected</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -304,12 +274,26 @@
                                     <param id="0" name="Variable">g_updateLock</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">px</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLX</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">py</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLY</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">37 (Left arrow)</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                    <param id="0" name="Instance variable">selected</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -320,12 +304,26 @@
                                     <param id="0" name="Variable">g_updateLock</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">px</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLX</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">py</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLY</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">39 (Right arrow)</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                    <param id="0" name="Instance variable">selected</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -335,6 +333,14 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">g_updateLock</param>
                                     <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">px</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLX</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Octopus">
+                                    <param id="0" name="Instance variable">py</param>
+                                    <param id="1" name="Value">Octopus.GridMove.DestinationLY</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -371,10 +377,6 @@
                                     </conditions>
                                     <actions>
                                         <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">g_updateLock</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                        <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">g_enemyTurn</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
@@ -397,6 +399,10 @@
                                             <param id="0" name="Variable">timerCounter</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_enemyTurn</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
@@ -405,51 +411,110 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" title="Octopus Switching" />
-        <event-block>
-            <conditions>
-                <condition id="0" name="On click" type="Mouse">
-                    <param id="0" name="Mouse button">0</param>
-                    <param id="1" name="Click type">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-13" name="Set boolean" type="Octopus">
-                    <param id="0" name="Instance variable">picked</param>
-                    <param id="1" name="Value">0</param>
-                </action>
-            </actions>
+        <variable name="g_pickedIndex" type="number">0</variable>
+        <variable name="g_octopusCount" type="number">1</variable>
+        <event-group description="" title="Octopus Switching">
             <sub-events>
                 <event-block>
                     <conditions>
-                        <condition id="-15" name="Pick nearest/furthest" type="Octopus">
-                            <param id="0" name="Which">0</param>
-                            <param id="1" name="X">Mouse.X</param>
-                            <param id="2" name="Y">Mouse.Y</param>
+                        <condition id="0" name="On click" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-13" name="Set boolean" type="Octopus">
-                            <param id="0" name="Instance variable">picked</param>
-                            <param id="1" name="Value">1</param>
+                            <param id="0" name="Instance variable">selected</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                     <sub-events>
-                        <variable name="pickedUID" type="number">0</variable>
-                        <event-block disabled="1">
+                        <event-block>
                             <conditions>
-                                <condition disabled="1" id="-10" name="For" type="System">
-                                    <param id="0" name="Name">&quot;octoID&quot;</param>
-                                    <param id="1" name="Start index">0</param>
-                                    <param id="2" name="End index">Octopie.Count</param>
+                                <condition id="-15" name="Pick nearest/furthest" type="Octopus">
+                                    <param id="0" name="Which">0</param>
+                                    <param id="1" name="X">Mouse.X</param>
+                                    <param id="2" name="Y">Mouse.Y</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Octopus">
+                                    <param id="0" name="Instance variable">selected</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>This does not yet work properly, will not go back to first</comment>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">81 (Q)</param>
+                        </condition>
+                        <condition disabled="1" id="-19" name="Pick all" type="System">
+                            <param id="0" name="Object">Octopus</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">g_octopusCount</param>
+                            <param id="1" name="Value">Octopus.PickedCount</param>
+                        </action>
+                        <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                            <param id="0" name="Instance variable">mother</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                            <param id="0" name="Instance variable">selected</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block disabled="1">
+                            <conditions>
+                                <condition disabled="1" id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                    <param id="1" name="Instance">g_pickedIndex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">g_pickedIndex</param>
+                                    <param id="1" name="Value">g_pickedIndex+1</param>
+                                </action>
+                                <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                                    <param id="0" name="Instance variable">mother</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                                    <param id="0" name="Instance variable">selected</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Reset pickindex</comment>
+                                <event-block disabled="1">
+                                    <conditions>
+                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">g_pickedIndex</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">g_octopusCount-1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action disabled="1" id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_pickedIndex</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
         <event-group description="" title="Spawn extra octopus">
             <sub-events>
                 <comment>Don&apos;t forget to make this cost a turn</comment>
@@ -461,44 +526,95 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-11" name="For Each" type="System">
+                                <condition disabled="1" id="-11" name="For Each" type="System">
                                     <param id="0" name="Object">Octopus</param>
                                 </condition>
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Octopus">
                                             <param id="0" name="Instance variable">mother</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="14" name="Create chess" type="Board">
+                                        <action disabled="1" id="14" name="Create chess" type="Board">
                                             <param id="0" name="Chess">Octopus</param>
-                                            <param id="1" name="Logic X">4</param>
-                                            <param id="2" name="Logic Y">4</param>
+                                            <param id="1" name="Logic X">Octopus.px</param>
+                                            <param id="2" name="Logic Y">Octopus.py</param>
                                             <param id="3" name="Logic Z">1</param>
                                             <param id="4" name="Layer">0</param>
                                         </action>
+                                        <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                                            <param id="0" name="Instance variable">selected</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action disabled="1" id="-10" name="Set value" type="Octopus">
+                                            <param id="0" name="Instance variable">arms</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action disabled="1" id="-13" name="Set boolean" type="Octopus">
+                                            <param id="0" name="Instance variable">mother</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
                                     </actions>
                                     <sub-events>
-                                        <event-block>
+                                        <event-block disabled="1">
                                             <conditions />
-                                            <actions>
-                                                <action id="-13" name="Set boolean" type="Octopus">
-                                                    <param id="0" name="Instance variable">picked</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Octopus">
-                                                    <param id="0" name="Instance variable">arms</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                            </actions>
+                                            <actions />
                                         </event-block>
                                     </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Create chess" type="Board">
+                                    <param id="0" name="Chess">Octopus</param>
+                                    <param id="1" name="Logic X">floor(Octopus.X/44)+1</param>
+                                    <param id="2" name="Logic Y">floor(Octopus.Y/44)+1</param>
+                                    <param id="3" name="Logic Z">1</param>
+                                    <param id="4" name="Layer">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Octopus</param>
+                                        </condition>
+                                        <condition id="-13" name="Pick nth instance" type="System">
+                                            <param id="0" name="Object">Octopus</param>
+                                            <param id="1" name="Instance">Octopus.PickedCount-1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" type="Octopus">
+                                            <param id="0" name="Instance variable">selected</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Octopus">
+                                            <param id="0" name="Instance variable">arms</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" type="Octopus">
+                                            <param id="0" name="Instance variable">mother</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions />
                                 </event-block>
                             </sub-events>
                         </event-block>
