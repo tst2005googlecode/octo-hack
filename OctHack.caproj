@@ -7,12 +7,12 @@
     <unique-id>3abb31k8t72ls</unique-id>
     <saved-with-version>9500</saved-with-version>
     <used-plugins>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
-        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
+        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Rex_GridMove" version="0.100000001">Grid Move</behavior>
@@ -91,6 +91,9 @@
         </object-type>
         <object-type name="Tiles">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="solidState" type="boolean" />
+            </instance-variables>
             <behaviors>
                 <behavior-type name="Solid">
                     <behavior id="solid" />
@@ -134,6 +137,58 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Piranha">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="GridMove">
+                    <behavior id="Rex_GridMove" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.295455" y="0.295455" />
+                            <point x="0.5" y="0.113636" />
+                            <point x="0.659091" y="0.340909" />
+                            <point x="0.863636" y="0.5" />
+                            <point x="0.772727" y="0.772727" />
+                            <point x="0.5" y="0.977273" />
+                            <point x="0.25" y="0.75" />
+                            <point x="0.113636" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="line_of_sight">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="UIDOwner" type="number" />
+            </instance-variables>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0">
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0">
+                        <collision-poly>
+                            <point x="1" y="0" />
+                            <point x="1" y="1" />
+                            <point x="0" y="1" />
+                            <point x="0" y="0" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
