@@ -31,9 +31,11 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <picked>true</picked>
+                        <selected>false</selected>
                         <arms>1</arms>
-                        <mother>true</mother>
+                        <mother>false</mother>
+                        <px>0</px>
+                        <py>0</py>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="GridMove">
@@ -47,8 +49,8 @@
                         <behavior-instance type="ScrollTo" />
                     </behavior-instances>
                     <world>
-                        <x>-88</x>
-                        <y>44</y>
+                        <x>88</x>
+                        <y>88</y>
                         <z>0</z>
                         <width>68</width>
                         <height>68</height>
@@ -110,9 +112,11 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <picked>false</picked>
+                        <selected>false</selected>
                         <arms>1</arms>
-                        <mother>true</mother>
+                        <mother>false</mother>
+                        <px>0</px>
+                        <py>0</py>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="GridMove">
@@ -126,8 +130,8 @@
                         <behavior-instance type="ScrollTo" />
                     </behavior-instances>
                     <world>
-                        <x>-75</x>
-                        <y>-47</y>
+                        <x>176</x>
+                        <y>88</y>
                         <z>0</z>
                         <width>44</width>
                         <height>44</height>

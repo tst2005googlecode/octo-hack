@@ -12,6 +12,11 @@
     <property name="solid" value="1"/>
    </properties>
   </tile>
+  <tile id="6">
+   <properties>
+    <property name="evilfish" value="1"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="17" height="17">
   <data encoding="base64">

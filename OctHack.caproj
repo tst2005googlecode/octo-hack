@@ -42,9 +42,11 @@
         <object-type name="Octopus">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="picked" type="boolean" />
+                <instance-variable name="selected" type="boolean" />
                 <instance-variable name="arms" type="number" />
                 <instance-variable name="mother" type="boolean" />
+                <instance-variable name="px" type="number" />
+                <instance-variable name="py" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="GridMove">
