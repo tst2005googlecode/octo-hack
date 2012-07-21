@@ -32,13 +32,33 @@ Player = Class{function(self, x, y)
 	self.arms = 8
 end}
 
-function smartDrawTile(self, Img)
+function smartDrawTile(self, Img, dx, dy)
+	if dx == nil then
+		dx = 0
+	end
+	if dy == nil then
+		dy = 0
+	end
 	love.graphics.setColor(255,255,255,255)
-	love.graphics.draw(Img, self.x*44+22, self.y*44+22, 0, 1, 1, Img:getWidth()/2, Img:getHeight()/2)
+	love.graphics.draw(Img, (self.x+dx)*44+22, (dy+self.y)*44+22, 0, 1, 1, Img:getWidth()/2, Img:getHeight()/2)
+end
+
+function Player:sdt(min, Img, dx, dy)
+	if self.arms >= min then
+		smartDrawTile(self, Img, dx, dy)
+	end
 end
 
 function Player:draw()
 	smartDrawTile(self, Head)
+	self:sdt(8, gfxArms[1], -1, 1)
+	self:sdt(7, gfxArms[2], 0, 1)
+	self:sdt(6, gfxArms[3], 1, 1)
+	self:sdt(5, gfxArms[4], -1, 0)
+	self:sdt(4, gfxArms[6], 1, 0)
+	self:sdt(3, gfxArms[7], -1, -1)
+	self:sdt(2, gfxArms[8], 0, -1)
+	self:sdt(1, gfxArms[9], 1, -1)
 	love.graphics.setColor(0,0,0,255)
 	love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
 end
@@ -55,7 +75,7 @@ function Player:getRenderPos()
 end
 
 function Player:spawnSub()
-	if self.arms > 2 then
+	if self.arms > 1 then
 		local p = addPlayer(self.x, self.y)
 		p.arms = 1
 		self.arms = self.arms - 1
@@ -147,6 +167,10 @@ function love.load()
 	--playMusic("bu-a-banana-and-simplices.it")
 	Head = love.graphics.newImage( "media/Head.png" )
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
+	gfxArms = {}
+	for _,i in ipairs({1,2,3,4,6,7,8,9}) do
+		gfxArms[i] = love.graphics.newImage( "media/Tentacles" .. i .. ".png" )
+	end
 	Gamestate.registerEvents()
     Gamestate.switch(sgame)
 end
