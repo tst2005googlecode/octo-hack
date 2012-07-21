@@ -311,10 +311,13 @@
    <tile gid="4"/>
   </data>
  </layer>
- <objectgroup name="fish" width="17" height="17">
+ <objectgroup name="fish" width="17" height="17" visible="0">
   <object x="283" y="148"/>
   <object x="283" y="240"/>
   <object x="200" y="195"/>
   <object x="377" y="191"/>
+ </objectgroup>
+ <objectgroup name="player" width="17" height="17">
+  <object x="460" y="587"/>
  </objectgroup>
 </map>

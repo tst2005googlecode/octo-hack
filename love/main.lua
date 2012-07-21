@@ -249,7 +249,7 @@ function loadWorld()
 	camera = Camera(Vector(1,1))
 	players =  {}
 	enemies = {}
-	addPlayer(2,2)
+	--addPlayer(2,2)
 	--addEnemy(5,2)
 	selected = 1
 	col = {}
@@ -276,6 +276,9 @@ function loadWorld()
 			print("Object: #", i, ", name: ", o.name, ", type: ", o.type, ", pos: ", o.x, o.y)
 			if layername == "fish" then
 				addEnemy(T(o.x),T(o.y))
+			end
+			if layername == "player" then
+				addPlayer(T(o.x),T(o.y))
 			end
 		end
 	end
