@@ -1,7 +1,11 @@
+Sounds = false
+
 function playSound(s)
 	love.audio.stop(s)
 	love.audio.rewind(s)
-	love.audio.play(s)
+	if Sounds then
+		love.audio.play(s)
+	end
 end
 
 function sfx(path)
@@ -168,7 +172,9 @@ function love.load()
 	love.graphics.setBackgroundColor( 100, 149, 237 )
 	canplay = 1
 	loadWorld()
-	playMusic("sfx/bu-a-banana-and-simplices.it")
+	if Sounds then
+		playMusic("sfx/bu-a-banana-and-simplices.it")
+	end
 	Head = love.graphics.newImage( "media/Head.png" )
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
 	gfxArms = {}
