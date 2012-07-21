@@ -30,6 +30,15 @@ sgame = Gamestate.new()
 smenu = Gamestate.new()
 sdone = Gamestate.new()
 
+Coin = Class{function(self, x, y)
+	self.x = x
+	self.y = y
+end}
+
+function Coin:draw()
+	smartDrawTile(self, gfxCoin)
+end
+
 Player = Class{function(self, x, y)
 	self.x = x
 	self.y = y
@@ -177,6 +186,7 @@ function love.load()
 	end
 	Head = love.graphics.newImage( "media/Head.png" )
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
+	gfxCoin = love.graphics.newImage( "media/Coin.png" )
 	gfxArms = {}
 	for _,i in ipairs({1,2,3,4,6,7,8,9}) do
 		gfxArms[i] = love.graphics.newImage( "media/Tentacles" .. i .. ".png" )
@@ -185,6 +195,7 @@ function love.load()
 	sfxDetach = sfx("sfx/detach.mp3")
 	sfxMove = sfx("sfx/move.mp3")
 	sfxHitWall = sfx("sfx/hitwall.mp3")
+	sfxCoin = sfx("sfx/coin.wav")
 	
 	Gamestate.registerEvents()
     Gamestate.switch(sgame)
@@ -212,14 +223,53 @@ function sgame:draw()
 	for i,enemy in ipairs(enemies) do
 		enemy:draw()
 	end
+	for i,coin in ipairs(coins) do
+		coin:draw()
+	end
 	camera:detach()
 	love.graphics.setColor(0,0,0, 255)
 	--love.graphics.print(string.format("%d", fps), 100, 10)
 end
 
+function remove_if(list, func)
+	local toremove = {}
+	for i,item in ipairs(list) do
+		if func(item) then
+			table.insert(toremove, i)
+		end
+	end
+	local i = 0
+	while #toremove ~= 0 do
+		i = table.remove(toremove)
+		table.remove(list,i)
+	end
+end
+
 function handleTick()
 	for i,enemy in ipairs(enemies) do
 		enemy:ai()
+	end
+	
+	-- check for enemy-player collisions
+	
+	-- check for player-coin collisions
+	for i,player in ipairs(players) do
+		for j,coin in ipairs(coins) do
+			if player.x == coin.x and player.y == coin.y then
+				coin.killme = true
+				playSound(sfxCoin)
+			end
+		end
+	end
+	
+	remove_if(coins, isKillmeSet)
+end
+
+function isKillmeSet(self)
+	if self.killme then
+		return true
+	else
+		return false
 	end
 end
 
@@ -288,6 +338,10 @@ function addEnemy(x,y)
 	enemies[#enemies + 1] = Enemy(x,y)
 end
 
+function addCoin(x,y)
+	coins[#coins + 1] = Coin(x,y)
+end
+
 function T(x)
 	return math.floor(x/44)
 end
@@ -299,6 +353,7 @@ function loadWorld()
 	camera = Camera(Vector(1,1))
 	players =  {}
 	enemies = {}
+	coins = {}
 	selected = 1
 	col = {}
 	for tilename, tilelayer in pairs(map.tileLayers) do
@@ -327,6 +382,9 @@ function loadWorld()
 			end
 			if layername == "player" then
 				addPlayer(T(o.x),T(o.y))
+			end
+			if layername == "coins" then
+				addCoin(T(o.x),T(o.y))
 			end
 		end
 	end
