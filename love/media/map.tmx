@@ -317,7 +317,11 @@
   <object x="200" y="195"/>
   <object x="377" y="191"/>
  </objectgroup>
- <objectgroup name="player" width="17" height="17">
+ <objectgroup name="player" width="17" height="17" visible="0">
   <object x="460" y="587"/>
+ </objectgroup>
+ <objectgroup name="coins" width="17" height="17">
+  <object x="197" y="599"/>
+  <object x="197" y="675"/>
  </objectgroup>
 </map>
