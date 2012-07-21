@@ -3,52 +3,52 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <event-group description="" title="Movement">
+        <event-group description="" disabled="1" title="Movement">
             <sub-events>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">38 (Up arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
                             <param id="0" name="Direction">3</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">40 (Down arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
                             <param id="0" name="Direction">1</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">37 (Left arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
                             <param id="0" name="Direction">2</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">39 (Right arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
                             <param id="0" name="Direction">0</param>
                         </action>
                     </actions>
@@ -208,6 +208,8 @@
             </sub-events>
         </event-group>
         <variable name="g_updateLock" type="number">0</variable>
+        <variable comment="turn delay time in updates" name="turnDelay" type="number">10</variable>
+        <variable name="timerCounter" type="number">0</variable>
         <event-group description="" title="Movement Update">
             <sub-events>
                 <event-block>
@@ -286,8 +288,6 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <variable comment="turn delay time in updates" name="turnDelay" type="number">30</variable>
-                <variable name="timerCounter" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="-14" name="Compare variable" type="System">
@@ -322,11 +322,19 @@
                                             <param id="0" name="Variable">g_updateLock</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">timerCounter</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions />
+                    <actions />
                 </event-block>
             </sub-events>
         </event-group>

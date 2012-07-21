@@ -39,6 +39,7 @@
                                 <deceleration>0</deceleration>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="ScrollTo" />
                     </behavior-instances>
                     <world>
                         <x>-88</x>

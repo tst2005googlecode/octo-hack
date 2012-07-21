@@ -7,23 +7,24 @@
     <unique-id>3abb31k8t72ls</unique-id>
     <saved-with-version>9500</saved-with-version>
     <used-plugins>
-        <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
+        <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Rex_GridMove" version="0.100000001">Grid Move</behavior>
+        <behavior id="scrollto" version="1">Scroll To</behavior>
         <behavior id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>748</width>
-        <height>748</height>
+        <width>500</width>
+        <height>500</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <use-loader-layout>0</use-loader-layout>
@@ -43,6 +44,9 @@
             <behaviors>
                 <behavior-type name="GridMove">
                     <behavior id="Rex_GridMove" />
+                </behavior-type>
+                <behavior-type name="ScrollTo">
+                    <behavior id="scrollto" />
                 </behavior-type>
             </behaviors>
             <animation-folder expanded="1">
