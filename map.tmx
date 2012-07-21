@@ -14,7 +14,7 @@
   </tile>
   <tile id="6">
    <properties>
-    <property name="evilfish" value="1"/>
+    <property name="piranha" value="1"/>
    </properties>
   </tile>
  </tileset>
