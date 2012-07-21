@@ -8,11 +8,11 @@
     <saved-with-version>9500</saved-with-version>
     <used-plugins>
         <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
+        <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
         <plugin id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Rex_GridMove" version="0.100000001">Grid Move</behavior>
@@ -47,7 +47,7 @@
             </behaviors>
             <animation-folder expanded="1">
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                    <frame duration="1" hotspotX="0.477273" hotspotY="0.659091" />
+                    <frame duration="1" hotspotX="0.477273" hotspotY="0.522727" />
                 </animation>
             </animation-folder>
         </object-type>
