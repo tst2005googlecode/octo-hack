@@ -7,12 +7,12 @@
     <unique-id>3abb31k8t72ls</unique-id>
     <saved-with-version>9500</saved-with-version>
     <used-plugins>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_SLGBoard" version="0.100000001">Board</plugin>
+        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
         <plugin id="Rex_TMXImporter" version="0.109999999">TMX Importer</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Rex_SLGSquareTx" version="0.100000001">Square Tx</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Rex_GridMove" version="0.100000001">Grid Move</behavior>

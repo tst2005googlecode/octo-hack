@@ -133,8 +133,8 @@
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">TMXImporter.TileProp(&quot;solid&quot;)</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">&quot;0&quot;</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Second value">&quot;1&quot;</param>
                                 </condition>
                             </conditions>
                             <actions>
