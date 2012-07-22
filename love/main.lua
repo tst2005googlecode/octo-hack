@@ -154,6 +154,10 @@ function Player:spawnSub()
 	end
 end
 
+function Player:rotate()
+	self.arms[ID(1,1)],self.arms[ID(0,1)],self.arms[ID(-1,1)],self.arms[ID(-1,0)],self.arms[ID(-1,-1)],self.arms[ID(0,-1)],self.arms[ID(1,-1)],self.arms[ID(1,0)] = self.arms[ID(0,1)],self.arms[ID(-1,1)],self.arms[ID(-1,0)],self.arms[ID(-1,-1)],self.arms[ID(0,-1)],self.arms[ID(1,-1)],self.arms[ID(1,0)],self.arms[ID(1,1)]
+end
+
 function Player:removeArm()
 	local a = freearm(self)
 	if a ~= nil then
@@ -565,6 +569,10 @@ function sgame:keyreleased(key)
 		end
 		if key==" " then
 			player:spawnSub()
+			handleTick(false)
+		end
+		if key=="r" then
+			player:rotate()
 			handleTick(false)
 		end
 		if key=="tab" then
