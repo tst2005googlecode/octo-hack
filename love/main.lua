@@ -1,4 +1,4 @@
-Sounds = false
+Sounds = true
 LosSetting = true
 
 function playSound(s)
@@ -142,13 +142,15 @@ function freearm(self)
 end
 
 function Player:spawnSub()
-	local a = freearm(self)
-	if a ~= nil then
-		self.arms[a] = nil
-		local p = addPlayer(self.x, self.y)
-		p:clearArms()
-		p:addArm()
-		playSound(sfxDetach)
+	if self:getArmCount() > 1 then
+		local a = freearm(self)
+		if a ~= nil then
+			self.arms[a] = nil
+			local p = addPlayer(self.x, self.y)
+			p:clearArms()
+			p:addArm()
+			playSound(sfxDetach)
+		end
 	end
 end
 
@@ -293,6 +295,7 @@ end
 function smenu:init()
 	self.bg = love.graphics.newImage('media/main.png')
 end
+
 function smenu:draw()
 	love.graphics.setColor(255,255,255,255)
     love.graphics.draw(self.bg, 0, 0)
@@ -316,6 +319,7 @@ function sdone:init()
 end
 function sdone:enter()
 	print("entered done")
+	playSound(sfxWin)
 end
 function sdone:draw()
 	love.graphics.setColor(255,255,255,255)
@@ -333,6 +337,7 @@ function sfail:init()
 	self.bg = love.graphics.newImage('media/fail.png')
 end
 function sfail:enter()
+	playSound(sfxFail)
 	print("entered fail")
 end
 function sfail:draw()
@@ -352,7 +357,7 @@ function love.load()
 	canplay = 1
 	--loadWorld()
 	if Sounds then
-		playMusic("sfx/bu-a-banana-and-simplices.it")
+		playMusic("sfx/Wanderers WIP.ogg")
 	end
 	Head = love.graphics.newImage( "media/Head.png" )
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
@@ -367,12 +372,14 @@ function love.load()
 	gfxArms[ID(0,-1)] = love.graphics.newImage( "media/Tentacles8.png" )
 	gfxArms[ID(1,-1)] = love.graphics.newImage( "media/Tentacles9.png" )
 	
-	sfxDetach = sfx("sfx/detach.mp3")
-	sfxMove = sfx("sfx/move.mp3")
-	sfxHitWall = sfx("sfx/hitwall.mp3")
-	sfxCoin = sfx("sfx/coin.wav")
-	sfxDmg = sfx("sfx/dmg.wav")
-	sfxKill = sfx("sfx/kill.wav")
+	sfxDetach = sfx("sfx/Amputating.wav")
+	sfxMove = sfx("sfx/Swiming.wav")
+	sfxHitWall = sfx("sfx/HitWall.wav")
+	sfxCoin = sfx("sfx/Coin.wav")
+	sfxDmg = sfx("sfx/EnemyHarm.wav")
+	sfxKill = sfx("sfx/KillFish.wav")
+	sfxWin = sfx("sfx/Win.wav")
+	sfxFail = sfx("sfx/Fail.wav")
 	
 	Gamestate.registerEvents()
     Gamestate.switch(smenu)
