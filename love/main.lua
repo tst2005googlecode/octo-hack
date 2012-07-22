@@ -1,4 +1,4 @@
-Sounds = true
+Sounds = false
 LosSetting = true
 
 function playSound(s)
@@ -194,7 +194,7 @@ function Enemy:getRenderPos()
 	return Vector(self.x*44+22, self.y*44+22)
 end
 
-function Enemy:ai()
+function Enemy:random_ai()
 	local m = 0
 	local dx = 0
 	local dy = 0
@@ -219,30 +219,37 @@ function Enemy:ai()
 	until self:move(dx,dy) or c>8
 end
 
-function Enemy:smartAI()
-	local playerPos = Vector(players[selected].x, players[selected].y)
-	local enemyPos = Vector(self.x, self.y)
-	if (Bresenham(enemyPos.x, playerPos.x, enemyPos.y, playerPos.y, LosSetting)) then
+function Enemy:smart_ai()
+	local player = players[selected]
+	if Bresenham(self.x, player.x, self.y, player.y) then
 		print("LOS!")
-		local rp = self:getRenderPos()
-		local pp = players[selected]:getRenderPos()
-		love.graphics.setColor(255,0,0,255)
-		love.graphics.line(rp.x,rp.y,pp.x,pp.y)
-		local deltax = playerPos.x - enemyPos.x
-		local deltay = playerPos.y - enemyPos.y
-		if (deltax > 0) then
-			--Player to the right of enemy
-			if (deltay > deltax) then
+		local dx = 0
+		local dy = 0
+		if player.x == self.x then
+			if player.y > self.y then
+				dy = 1
+			else
+				dy = -1
+			end
+		else
+			if player.x > self.x then
+				dx = 1
+			else
+				dx = -1
 			end
 		end
-
-
-
+		
+		self:move(dx,dy)
 	end
 end
 
-function Bresenham(x0, x1, y0, y1, special)
+function Enemy:ai()
+	self:smart_ai()
+end
+
+function Bresenham(x0, x1, y0, y1)
 	local steep = false
+	local special = false
 	if (math.abs(y1 - y0) > math.abs(x1 - x0)) then
 		steep = true
 	end
@@ -423,7 +430,6 @@ function sgame:draw()
 	end
 	for i,enemy in ipairs(enemies) do
 		enemy:draw()
-		enemy:smartAI()
 	end
 	for i,coin in ipairs(coins) do
 		coin:draw()
@@ -451,7 +457,6 @@ end
 function handleTick()
 	for i,enemy in ipairs(enemies) do
 		enemy:ai()
-		enemy:smartAI()
 	end
 	
 	-- check for enemy-player collisions
