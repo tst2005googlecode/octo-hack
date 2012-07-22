@@ -74,7 +74,7 @@ function Player:draw()
 	self:sdt(2, gfxArms[8], 0, -1)
 	self:sdt(1, gfxArms[9], 1, -1)
 	love.graphics.setColor(0,0,0,255)
-	--love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
+	love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
 end
 
 function Player:move(x, y)
@@ -141,17 +141,19 @@ function Enemy:ai()
 	until self:move(dx,dy) or c>8
 end
 
+
 function Bresenham(x0, x1, y0, y1)
+	local steep = false
 	if (abs(y1 - y0) > abs(x1 - x0)) then
-		local steep§ = true
+		steep = true
 	end
-	if(steep)
+	if steep then
 		--swap(x0, y0);
 		--swap(x1, y1);
 		x0, y0 = y0, x0
 		x1, y1 = y1, x1
 	end
-	if (x0 > x1)
+	if x0 > x1 then
 		--swap(x0, x1);
 		--swap(y0, y1);
 		x0, X1 = x1, x0
@@ -163,43 +165,45 @@ function Bresenham(x0, x1, y0, y1)
 	local deltaerr = deltay / deltax
 	local ystep;
 	local y = y0
-	if (y0 < y1) then
+	if y0 < y1 then
 		ystep = 1
 	else
 		ystep = -1
 	end
 
-	for (x=x0,x1-1) do
+	for x=x0,x1-1 do
 		if(steep) then
-			if (hasTile(y,x))
+			if (hasTile(y,x)) then
 				--Do stuff
+				return false
 			end
 
 		else
-			if (hasTile(x,y))
+			if (hasTile(x,y)) then
 				--Do stuff
+				return false
 			end
 		end
 		error = error + deltaerr
 		if (error >= 0.5) then
 			y = y + ystep
-			if( special )
-				if(steep)
-					m.push_back(Pos(y,x));
-					if (hasTile(y,x))
+			if special then
+				if steep then
+					--m.push_back(Pos(y,x))
+					if hasTile(y,x) then
 						--Do stuff
 					end
 				else
-					m.push_back(Pos(x,y));
-					if (hasTile(x,y))
+					--m.push_back(Pos(x,y))
+					if hasTile(x,y) then
 						--Do stuff
 					end
 				end
 			end
-			error = error - 1.0f;
+			error = error - 1.0
 		end
 	end
-	return m;
+	return true
 end
 
 function smenu:init()
@@ -311,7 +315,7 @@ function sgame:draw()
 	camera:detach()
 	love.graphics.setColor(0,0,0, 255)
 	--love.graphics.print(string.format("%d", fps), 100, 10)
-	--love.graphics.print(string.format("Players: " .. #players .. " | Coins: " .. #coins .. " | Enemies: " .. #enemies, fps), 100, 10)
+	love.graphics.print(string.format("Players: " .. #players .. " | Coins: " .. #coins .. " | Enemies: " .. #enemies, fps), 100, 10)
 end
 
 function remove_if(list, func)
