@@ -74,7 +74,7 @@ function Player:draw()
 	self:sdt(2, gfxArms[8], 0, -1)
 	self:sdt(1, gfxArms[9], 1, -1)
 	love.graphics.setColor(0,0,0,255)
-	love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
+	--love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
 end
 
 function Player:move(x, y)
@@ -311,7 +311,7 @@ function sgame:draw()
 	camera:detach()
 	love.graphics.setColor(0,0,0, 255)
 	--love.graphics.print(string.format("%d", fps), 100, 10)
-	love.graphics.print(string.format("Players: " .. #players .. " | Coins: " .. #coins .. " | Enemies: " .. #enemies, fps), 100, 10)
+	--love.graphics.print(string.format("Players: " .. #players .. " | Coins: " .. #coins .. " | Enemies: " .. #enemies, fps), 100, 10)
 end
 
 function remove_if(list, func)
