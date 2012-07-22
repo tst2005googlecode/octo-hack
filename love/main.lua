@@ -1,4 +1,4 @@
-Sounds = false
+Sounds = true
 LosSetting = true
 
 function playSound(s)
@@ -324,7 +324,7 @@ function smenu:draw()
 	love.graphics.setColor(255,255,255,255)
     love.graphics.draw(self.bg, 0, 0)
 	love.graphics.setColor(0,0,0,255)
-	love.graphics.print("a game by Christian Costanza, Gustav Jansson, Jacob Michelsen, Giselle Otero | No More Sweden 2012", 140, 580)
+	love.graphics.print("a game by Christian Costanza, Gustav Jansson, Jacob Michelsen, David Nilsson, Giselle Otero | No More Sweden 2012", 35, 580)
 end
 function smenu:enter()
 	print("entered menu")
