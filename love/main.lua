@@ -404,6 +404,7 @@ function love.load()
 	sfxKill = sfx("sfx/KillFish.wav")
 	sfxWin = sfx("sfx/Win.wav")
 	sfxFail = sfx("sfx/Fail.wav")
+	sfxMerge = sfx("sfx/Rejoining.wav")
 	
 	Gamestate.registerEvents()
     Gamestate.switch(smenu)
@@ -454,7 +455,7 @@ function remove_if(list, func)
 	end
 end
 
-function handleTick()
+function handleTick(domerge)
 	for i,enemy in ipairs(enemies) do
 		enemy:ai()
 	end
@@ -488,6 +489,22 @@ function handleTick()
 			if player.x == coin.x and player.y == coin.y then
 				coin.killme = true
 				playSound(sfxCoin)
+			end
+		end
+	end
+	
+	-- check for player-player collisions
+	if domerge then
+		for i,p1 in ipairs(players) do
+			for j,p2 in ipairs(players) do
+				if i~=j and p1.killme ~= true and p1.x == p2.x and p1.y == p2.y then
+					p2.killme = true
+					playSound(sfxMerge)
+					print("Merging")
+					for i=1,p2:getArmCount() do
+						p1:addArm()
+					end
+				end
 			end
 		end
 	end
@@ -532,23 +549,23 @@ function sgame:keyreleased(key)
 	if canplay==1 then
 		if key=="left" then
 			player:move(-1, 0)
-			handleTick()
+			handleTick(true)
 		end
 		if key=="right" then
 			player:move(1, 0)
-			handleTick()
+			handleTick(true)
 		end
 		if key =="up" then
 			player:move(0, -1)
-			handleTick()
+			handleTick(true)
 		end
 		if key=="down" then
 			player:move(0, 1)
-			handleTick()
+			handleTick(true)
 		end
 		if key==" " then
 			player:spawnSub()
-			handleTick()
+			handleTick(false)
 		end
 		if key=="tab" then
 			selected = (selected % #players) + 1
