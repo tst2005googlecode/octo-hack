@@ -96,8 +96,24 @@ function Player:draw()
 	love.graphics.print("#" .. self:getArmCount(), self.x*44, self.y*44)
 end
 
+function Player:testPosition(dx,dy)
+	if true == hasTile(self.x+dx, self.y+dy) then
+		return true
+	end
+	
+	for i,a in ipairs(ARMS) do
+		if self.arms[ID(a.x, a.y)] ~= nil then
+			if true == hasTile(self.x+dx+a.x, self.y+dy+a.y) then
+				return true
+			end			
+		end
+	end
+	
+	return false
+end
+
 function Player:move(x, y)
-	if false == hasTile(self.x+x, self.y+y) then
+	if false == self:testPosition(x, y) then
 		self.x = self.x + x
 		self.y = self.y + y
 		playSound(sfxMove)
