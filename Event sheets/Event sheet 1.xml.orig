@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <event-group description="" disabled="1" title="Movement">
+            <sub-events>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">38 (Up arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
+                            <param id="0" name="Direction">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">40 (Down arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
+                            <param id="0" name="Direction">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
+                            <param id="0" name="Direction">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="GridMove" disabled="1" id="1" name="Move to neighbor" type="Octopus">
+                            <param id="0" name="Direction">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" title="Initialization">
+            <sub-events>
+                <comment>1. load tmx string&#x0D;&#x0A;2. link squareTx to board&#x0D;&#x0A;3. setup squareTx to match tmx&#x0D;&#x0A;4. setup board to match tmx&#x0D;&#x0A;5. retrieve tile arry of tmx&#x0D;&#x0A;6. release tmx object</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Octopus" />
+                        <action id="-9" name="Destroy" type="Tile" />
+                        <action id="-9" name="Destroy" type="Piranha" />
+                        <action id="-9" name="Destroy" type="Tiles" />
+                        <action id="1" name="Import tmx" type="TMXImporter">
+                            <param id="0" name="TMX string">&quot;&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;&#x0D;&#x0A;&lt;map version=&apos;1.0&apos; orientation=&apos;orthogonal&apos; width=&apos;17&apos; height=&apos;17&apos; tilewidth=&apos;44&apos; tileheight=&apos;44&apos;&gt;&#x0D;&#x0A; &lt;tileset firstgid=&apos;1&apos; name=&apos;tileset&apos; tilewidth=&apos;44&apos; tileheight=&apos;44&apos;&gt;&#x0D;&#x0A;  &lt;image source=&apos;tileset.png&apos; width=&apos;264&apos; height=&apos;264&apos;/&gt;&#x0D;&#x0A;  &lt;tile id=&apos;0&apos;&gt;&#x0D;&#x0A;   &lt;properties&gt;&#x0D;&#x0A;    &lt;property name=&apos;solid&apos; value=&apos;1&apos;/&gt;&#x0D;&#x0A;   &lt;/properties&gt;&#x0D;&#x0A;  &lt;/tile&gt;&#x0D;&#x0A;  &lt;tile id=&apos;1&apos;&gt;&#x0D;&#x0A;   &lt;properties&gt;&#x0D;&#x0A;    &lt;property name=&apos;solid&apos; value=&apos;1&apos;/&gt;&#x0D;&#x0A;   &lt;/properties&gt;&#x0D;&#x0A;  &lt;/tile&gt;&#x0D;&#x0A;  &lt;tile id=&apos;6&apos;&gt;&#x0D;&#x0A;   &lt;properties&gt;&#x0D;&#x0A;    &lt;property name=&apos;piranha&apos; value=&apos;1&apos;/&gt;&#x0D;&#x0A;   &lt;/properties&gt;&#x0D;&#x0A;  &lt;/tile&gt;&#x0D;&#x0A; &lt;/tileset&gt;&#x0D;&#x0A; &lt;layer name=&apos;Tile Layer 1&apos; width=&apos;17&apos; height=&apos;17&apos;&gt;&#x0D;&#x0A;  &lt;data encoding=&apos;base64&apos;&gt;&#x0D;&#x0A;   AQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAABAAAAAgAAAAEAAAABAAAACAAAAAgAAAAIAAAAAQAAAAEAAAAIAAAACAAAAAgAAAADAAAACAAAAAcAAAAIAAAACAAAAAEAAAABAAAAAQAAAAEAAAAIAAAABAAAAAgAAAABAAAAAQAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAEAAAABAAAACAAAAAgAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAgAAAAIAAAAAQAAAAEAAAAIAAAACAAAAAEAAAACAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAABAAAAAQAAAAgAAAABAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAMAAAAIAAAACAAAAAEAAAABAAAAAQAAAAEAAAABAAAACAAAAAEAAAAIAAAACAAAAAgAAAAIAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAAAQAAAAIAAAABAAAAAQAAAAEAAAAIAAAAAQAAAAEAAAABAAAACAAAAAgAAAAIAAAAAQAAAAEAAAAIAAAACAAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAAAQAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAEAAAABAAAACAAAAAMAAAAIAAAACAAAAAgAAAAIAAAACAAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAMAAAAIAAAAAQAAAAEAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAAAQAAAAEAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAACAAAAAgAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAIAAAACAAAAAEAAAABAAAACAAAAAgAAAAIAAAACAAAAAEAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAAAQAAAAgAAAAIAAAAAQAAAAEAAAAIAAAABAAAAAgAAAAIAAAAAQAAAAgAAAABAAAAAQAAAAEAAAABAAAAAQAAAAgAAAABAAAACAAAAAgAAAABAAAAAQAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAEAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAABwAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAA==&#x0D;&#x0A;  &lt;/data&gt;&#x0D;&#x0A; &lt;/layer&gt;&#x0D;&#x0A;&lt;/map&gt;&#x0D;&#x0A;&quot;</param>
+                        </action>
+                        <action id="11" name="Setup layout" type="Board">
+                            <param id="0" name="Layout">SquareTx</param>
+                        </action>
+                        <action id="10" name="Set instance position of (0,0)" type="TMXImporter">
+                            <param id="0" name="X">22</param>
+                            <param id="1" name="Y">22</param>
+                        </action>
+                        <action id="2" name="Set orientation by number" type="SquareTx">
+                            <param id="0" name="Isometric">TMXImporter.IsIsometric</param>
+                        </action>
+                        <action id="3" name="Set cell size" type="SquareTx">
+                            <param id="0" name="Width">TMXImporter.TileWidth</param>
+                            <param id="1" name="Height">TMXImporter.TileHeight</param>
+                        </action>
+                        <action id="4" name="Set position offset" type="SquareTx">
+                            <param id="0" name="X">22</param>
+                            <param id="1" name="Y">22</param>
+                        </action>
+                        <action id="0" name="Reset board" type="Board">
+                            <param id="0" name="X">TMXImporter.MapWidth</param>
+                            <param id="1" name="Y">TMXImporter.MapHeight</param>
+                            <param id="2" name="Z">2</param>
+                        </action>
+                        <action id="7" name="Retrieve tile array" type="TMXImporter" />
+                        <action id="3" name="Release tmx object" type="TMXImporter" />
+                    </actions>
+                </event-block>
+                <comment>We should load in initial octopus position here</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Create chess" type="Board">
+                            <param id="0" name="Chess">Octopus</param>
+                            <param id="1" name="Logic X">4</param>
+                            <param id="2" name="Logic Y">4</param>
+                            <param id="3" name="Logic Z">1</param>
+                            <param id="4" name="Layer">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="1" name="On each tile cell" type="TMXImporter" />
+                    </conditions>
+                    <actions>
+                        <action id="12" name="Create tile" type="Board">
+                            <param id="0" name="Tile">Tiles</param>
+                            <param id="1" name="Logic X">TMXImporter.LogicX</param>
+                            <param id="2" name="Logic Y">TMXImporter.LogicY</param>
+                            <param id="3" name="Layer">0</param>
+                        </action>
+                        <action id="5" name="Set frame" type="Tiles">
+                            <param id="0" name="Frame number">TMXImporter.Frame</param>
+                        </action>
+                        <action id="6" name="Set speed" type="Tiles">
+                            <param id="0" name="Speed">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;solid&quot;)</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Second value">&quot;1&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Solid" id="0" name="Set enabled" type="Tiles">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Tiles">
+                                    <param id="0" name="Instance variable">solidState</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;solid&quot;)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;1&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Solid" id="0" name="Set enabled" type="Tiles">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Tiles">
+                                    <param id="0" name="Instance variable">solidState</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">TMXImporter.TileProp(&quot;piranha&quot;)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;1&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Create chess" type="Board">
+                                    <param id="0" name="Chess">Piranha</param>
+                                    <param id="1" name="Logic X">TMXImporter.LogicX</param>
+                                    <param id="2" name="Logic Y">TMXImporter.LogicY</param>
+                                    <param id="3" name="Logic Z">1</param>
+                                    <param id="4" name="Layer">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" type="Piranha">
+                                    <param id="0" name="Object">line_of_sight</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="line_of_sight">
+                                    <param id="0" name="Instance variable">UIDOwner</param>
+                                    <param id="1" name="Value">Piranha.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="" disabled="1" title="Temp Map Creator">
+            <sub-events>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition disabled="1" id="6" name="On object clicked" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                            <param id="2" name="Object clicked">Tile</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="5" name="Set frame" type="Tile">
+                            <param id="0" name="Frame number">(tile.AnimationFrame = 0)? 1:0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block disabled="1">
+                            <conditions>
+                                <condition disabled="1" id="3" name="Compare frame" type="Tile">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Number">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Solid" disabled="1" id="0" name="Set enabled" type="Tile">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block disabled="1">
+                            <conditions>
+                                <condition disabled="1" id="3" name="Compare frame" type="Tile">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Number">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Solid" disabled="1" id="0" name="Set enabled" type="Tile">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <variable name="g_updateLock" type="number">0</variable>
+        <variable name="enemyDelay" type="number">10</variable>
+        <variable name="g_enemyTurn" type="number">0</variable>
+        <variable comment="turn delay time in updates" name="turnDelay" type="number">20</variable>
+        <variable name="timerCounter" type="number">0</variable>
+        <event-group description="" title="Movement Update">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">g_updateLock</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">38 (Up arrow)</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                            <param id="0" name="Instance variable">picked</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                                            <param id="0" name="Direction">3</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_updateLock</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">40 (Down arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                                    <param id="0" name="Direction">1</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">g_updateLock</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">37 (Left arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                                    <param id="0" name="Direction">2</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">g_updateLock</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">39 (Right arrow)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="GridMove" id="1" name="Move to neighbor" type="Octopus">
+                                    <param id="0" name="Direction">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">g_updateLock</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">g_updateLock</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-1" name="Every tick" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" type="System">
+                                    <param id="0" name="Variable">timerCounter</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">timerCounter</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">enemyDelay</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_updateLock</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_enemyTurn</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">timerCounter</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">turnDelay</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">g_updateLock</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">timerCounter</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" title="Octopus Switching" />
+        <event-block>
+            <conditions>
+                <condition id="0" name="On click" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="Octopus">
+                    <param id="0" name="Instance variable">picked</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-15" name="Pick nearest/furthest" type="Octopus">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="X">Mouse.X</param>
+                            <param id="2" name="Y">Mouse.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Octopus">
+                            <param id="0" name="Instance variable">picked</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable name="pickedUID" type="number">0</variable>
+                        <event-block disabled="1">
+                            <conditions>
+                                <condition disabled="1" id="-10" name="For" type="System">
+                                    <param id="0" name="Name">&quot;octoID&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">Octopie.Count</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" title="Spawn extra octopus">
+            <sub-events>
+                <comment>Don&apos;t forget to make this cost a turn</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">32 (Space)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Octopus</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Octopus">
+                                            <param id="0" name="Instance variable">mother</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="14" name="Create chess" type="Board">
+                                            <param id="0" name="Chess">Octopus</param>
+                                            <param id="1" name="Logic X">4</param>
+                                            <param id="2" name="Logic Y">4</param>
+                                            <param id="3" name="Logic Z">1</param>
+                                            <param id="4" name="Layer">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-13" name="Set boolean" type="Octopus">
+                                                    <param id="0" name="Instance variable">picked</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Octopus">
+                                                    <param id="0" name="Instance variable">arms</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" title="Enemy Movement">
+            <sub-events>
+                <comment>Perhaps need to add &quot;every tick&quot; or something here?</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">g_updateLock</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" type="System">
+                            <param id="0" name="Variable">g_enemyTurn</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">line_of_sight</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition disabled="1" id="-7" name="Compare instance variable" type="line_of_sight">
+                                            <param id="0" name="Instance variable">UIDOwner</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Piranha.UID</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Piranha">
+                                            <param id="0" name="Unique ID">line_of_sight.UIDOwner</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-4" name="Set position to another object" type="line_of_sight">
+                                            <param id="0" name="Object">Piranha</param>
+                                            <param id="1" name="Image point (optional)">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-15" name="Pick nearest/furthest" type="Octopus">
+                                                    <param id="0" name="Which">0</param>
+                                                    <param id="1" name="X">Piranha.X</param>
+                                                    <param id="2" name="Y">Piranha.Y</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-22" name="Set angle toward position" type="line_of_sight">
+                                                    <param id="0" name="X">Octopus.X</param>
+                                                    <param id="1" name="Y">Octopus.Y</param>
+                                                </action>
+                                                <action id="-5" name="Set width" type="line_of_sight">
+                                                    <param id="0" name="Width">distance(Piranha.X,Piranha.Y, Octopus.X,Octopus.Y)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On collision with another object" type="line_of_sight">
+                    <param id="0" name="Object">Tiles</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Tiles">
+                            <param id="0" name="Instance variable">solidState</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="line_of_sight">
+                            <param id="0" name="Animation">&quot;Red&quot;</param>
+                            <param id="1" name="From">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="1" inverted="1" name="Is overlapping another object" type="line_of_sight">
+                    <param id="0" name="Object">Tiles</param>
+                </condition>
+                <condition id="2" name="Is playing" type="line_of_sight">
+                    <param id="0" name="Animation">&quot;Red&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Tiles">
+                            <param id="0" name="Instance variable">solidState</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="line_of_sight">
+                            <param id="0" name="Animation">&quot;Green&quot;</param>
+                            <param id="1" name="From">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
