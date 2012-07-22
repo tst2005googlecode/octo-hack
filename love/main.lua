@@ -116,7 +116,7 @@ function Player:move(x, y)
 	if false == self:testPosition(x, y) then
 		self.x = self.x + x
 		self.y = self.y + y
-		playSound(sfxMove)
+		--playSound(sfxMove)
 	else
 		playSound(sfxHitWall)
 	end
@@ -377,7 +377,7 @@ function sfail:keypressed(key)
 end
 
 function love.load()
-	love.graphics.setBackgroundColor( 100, 149, 237 )
+	love.graphics.setBackgroundColor( 0, 177, 224)
 	canplay = 1
 	--loadWorld()
 	if Sounds then
@@ -586,6 +586,7 @@ end
 function addPlayer(x,y)
 	local p = Player(x,y)
 	players[#players + 1] = p
+	selected = #players
 	return p
 end
 
@@ -602,7 +603,7 @@ function T(x)
 end
 
 function loadWorld()
-	map = ATL_Loader.load("map.tmx")
+	map = ATL_Loader.load("map2.tmx")
 	map.useSpriteBatch = true
 	map.drawObjects = false
 	camera = Camera(Vector(1,1))
