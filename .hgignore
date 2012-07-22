@@ -1,0 +1,8 @@
+OctHack.capx.backup1
+OctHackConstruct.capx.backup1
+OctHack.uistate.xml
+syntax: glob
+*.uistate.xml
+glob:*.capx.backup1
+glob:*.uistate.xml
+glob:*Thumbs.db
