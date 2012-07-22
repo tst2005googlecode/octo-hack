@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map version='1.0' orientation='orthogonal' width='17' height='17' tilewidth='44' tileheight='44'>
+ <tileset firstgid='1' name='plowed_soil' tilewidth='44' tileheight='44'>
+  <image source='plowed_soil.png' width='176' height='270'/>
+  <tile id='0'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='1'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='2'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='4'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='5'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='6'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='8'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='9'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='10'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='12'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='13'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='14'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='16'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='17'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+  <tile id='18'>
+   <properties>
+    <property name='solid' value='1'/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name='Tile Layer 1' width='17' height='17'>
+  <data>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='1'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='9'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='11'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='17'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='19'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='9'/>
+   <tile gid='10'/>
+   <tile gid='11'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='1'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='9'/>
+   <tile gid='10'/>
+   <tile gid='11'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='6'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='11'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='1'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='2'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='3'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='17'/>
+   <tile gid='18'/>
+   <tile gid='19'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='17'/>
+   <tile gid='18'/>
+   <tile gid='19'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='9'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='10'/>
+   <tile gid='11'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='13'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='14'/>
+   <tile gid='15'/>
+   <tile gid='4'/>
+   <tile gid='17'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='19'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='17'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='18'/>
+   <tile gid='19'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='5'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='1'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='1'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='5'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='4'/>
+   <tile gid='5'/>
+   <tile gid='4'/>
+  </data>
+ </layer>
+ <objectgroup name='Object Layer 1' width='17' height='17'/>
+</map>
