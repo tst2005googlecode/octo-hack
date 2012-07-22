@@ -20,6 +20,10 @@ function playMusic(path)
 	m:play()
 end
 
+function ID(x,y)
+	return x.."x"..y
+end
+
 Gamestate = require "hump.gamestate"
 ATL_Loader = require("AdvTiledLoader.Loader")
 Camera = require "hump.camera"
@@ -44,8 +48,26 @@ end
 Player = Class{function(self, x, y)
 	self.x = x
 	self.y = y
-	self.arms = 8
+	self.arms = {}
+	for i,id in ipairs(ARMS) do
+		self.arms[ID(id.x, id.y)] = true
+	end
 end}
+
+function Player:clearArms()
+	self.arms = {}
+end
+
+function Player:addArm()
+	for i,id in ipairs(ARMS) do
+		if self.arms[ID(id.x, id.y)] then
+		else
+			self.arms[ID(id.x, id.y)] = true
+			return true
+		end
+	end
+	return false
+end
 
 function smartDrawTile(self, Img, dx, dy)
 	if dx == nil then
@@ -58,28 +80,40 @@ function smartDrawTile(self, Img, dx, dy)
 	love.graphics.draw(Img, (self.x+dx)*44+22, (dy+self.y)*44+22, 0, 1, 1, Img:getWidth()/2, Img:getHeight()/2)
 end
 
-function Player:sdt(min, Img, dx, dy)
-	if self.arms >= min then
-		smartDrawTile(self, Img, dx, dy)
+function Player:sdt(a)
+	local p = ID(a.x, a.y)
+	if self.arms[p] then
+		smartDrawTile(self, gfxArms[p], a.x, a.y)
 	end
 end
 
 function Player:draw()
 	smartDrawTile(self, Head)
-	self:sdt(8, gfxArms[1], -1, 1)
-	self:sdt(7, gfxArms[2], 0, 1)
-	self:sdt(6, gfxArms[3], 1, 1)
-	self:sdt(5, gfxArms[4], -1, 0)
-	self:sdt(4, gfxArms[6], 1, 0)
-	self:sdt(3, gfxArms[7], -1, -1)
-	self:sdt(2, gfxArms[8], 0, -1)
-	self:sdt(1, gfxArms[9], 1, -1)
+	for i,a in ipairs(ARMS) do
+		self:sdt(a)
+	end
 	love.graphics.setColor(0,0,0,255)
-	love.graphics.print("#" .. tostring(self.arms), self.x*44, self.y*44)
+	love.graphics.print("#" .. self:getArmCount(), self.x*44, self.y*44)
+end
+
+function Player:testPosition(dx,dy)
+	if true == hasTile(self.x+dx, self.y+dy) then
+		return true
+	end
+	
+	for i,a in ipairs(ARMS) do
+		if self.arms[ID(a.x, a.y)] ~= nil then
+			if true == hasTile(self.x+dx+a.x, self.y+dy+a.y) then
+				return true
+			end			
+		end
+	end
+	
+	return false
 end
 
 function Player:move(x, y)
-	if false == hasTile(self.x+x, self.y+y) then
+	if false == self:testPosition(x, y) then
 		self.x = self.x + x
 		self.y = self.y + y
 		playSound(sfxMove)
@@ -92,13 +126,49 @@ function Player:getRenderPos()
 	return Vector(self.x*44+22, self.y*44+22)
 end
 
+function IDa(x,y)
+	return Vector(x,y)
+end
+
+ARMS = {IDa(1,0),IDa(1,-1),IDa(1,1),IDa(0,-1), IDa(0,1), IDa(-1, -1), IDa(-1,1), IDa(-1,0)}
+
+function freearm(self)
+	for i,id in ipairs(ARMS) do
+		if self.arms[ID(id.x, id.y)] then
+			return ID(id.x, id.y)
+		end
+	end
+	return nil
+end
+
 function Player:spawnSub()
-	if self.arms > 1 then
+	local a = freearm(self)
+	if a ~= nil then
+		self.arms[a] = nil
 		local p = addPlayer(self.x, self.y)
-		p.arms = 1
-		self.arms = self.arms - 1
+		p:clearArms()
+		p:addArm()
 		playSound(sfxDetach)
 	end
+end
+
+function Player:removeArm()
+	local a = freearm(self)
+	if a ~= nil then
+		self.arms[a] = nil
+	end
+end
+
+function Player:getArmCount()
+	local c = 0
+	for i,a in pairs(self.arms) do
+		if a ~= nil then
+			if a then
+				c = c + 1
+			end
+		end
+	end
+	return c
 end
 
 Enemy = Class{ function(self, x,y)
@@ -303,9 +373,14 @@ function love.load()
 	gfxEnemy = love.graphics.newImage( "media/Enemy.png" )
 	gfxCoin = love.graphics.newImage( "media/Coin.png" )
 	gfxArms = {}
-	for _,i in ipairs({1,2,3,4,6,7,8,9}) do
-		gfxArms[i] = love.graphics.newImage( "media/Tentacles" .. i .. ".png" )
-	end
+	gfxArms[ID(-1,1)] = love.graphics.newImage( "media/Tentacles1.png" )
+	gfxArms[ID(0,1)] = love.graphics.newImage( "media/Tentacles2.png" )
+	gfxArms[ID(1,1)] = love.graphics.newImage( "media/Tentacles3.png" )
+	gfxArms[ID(-1,0)] = love.graphics.newImage( "media/Tentacles4.png" )
+	gfxArms[ID(1,0)] = love.graphics.newImage( "media/Tentacles6.png" )
+	gfxArms[ID(-1,-1)] = love.graphics.newImage( "media/Tentacles7.png" )
+	gfxArms[ID(0,-1)] = love.graphics.newImage( "media/Tentacles8.png" )
+	gfxArms[ID(1,-1)] = love.graphics.newImage( "media/Tentacles9.png" )
 	
 	sfxDetach = sfx("sfx/detach.mp3")
 	sfxMove = sfx("sfx/move.mp3")
@@ -319,7 +394,7 @@ function love.load()
 end
 
 function hasTile(x,y)
-	local p = x .. "x" .. y
+	local p = ID(x,y)
 	local data = col[p]
 	if data == nil then
 		return true
@@ -374,12 +449,12 @@ function handleTick()
 	for i,player in ipairs(players) do
 		for j,enemy in ipairs(enemies) do
 			if player.x == enemy.x and player.y == enemy.y then
-				if player.arms == 1 then
+				if player:getArmCount() == 1 then
 					playSound(sfxDmg)
 					player.killme = true
 				else
 					playSound(sfxKill)
-					player.arms = player.arms - 1
+					player:removeArm()
 					enemy.killme = true
 				end
 			end
@@ -513,9 +588,9 @@ function loadWorld()
 				if tile and tile ~= nil then
 					if tile.properties.solid~=nil then
 						--print("found solid")
-						col[x.."x"..y] = true
+						col[ID(x,y)] = true
 					else
-						col[x.."x"..y] = false
+						col[ID(x,y)] = false
 					end
 				end
 			end
