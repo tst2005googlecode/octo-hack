@@ -1,4 +1,4 @@
-Sounds = true
+Sounds = false
 
 function playSound(s)
 	love.audio.stop(s)
