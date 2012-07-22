@@ -190,6 +190,10 @@ function Enemy:move(x, y)
 	end
 end
 
+function Enemy:getRenderPos()
+	return Vector(self.x*44+22, self.y*44+22)
+end
+
 function Enemy:ai()
 	local m = 0
 	local dx = 0
@@ -220,6 +224,19 @@ function Enemy:smartAI()
 	local enemyPos = Vector(self.x, self.y)
 	if (Bresenham(enemyPos.x, playerPos.x, enemyPos.y, playerPos.y, LosSetting)) then
 		print("LOS!")
+		local rp = self:getRenderPos()
+		local pp = players[selected]:getRenderPos()
+		love.graphics.setColor(255,0,0,255)
+		love.graphics.line(rp.x,rp.y,pp.x,pp.y)
+		local deltax = playerPos.x - enemyPos.x
+		local deltay = playerPos.y - enemyPos.y
+		if (deltax > 0) then
+			--Player to the right of enemy
+			if (deltay > deltax) then
+			end
+		end
+
+
 
 	end
 end
